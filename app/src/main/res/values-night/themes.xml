@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#4D94FF</color>
+    <color name="primary_light">#6BA5FF</color>
+    <color name="secondary">#00CC99</color>
+    <color name="background">#121212</color>
+    <color name="background_light">#1E1E1E</color>
+    <color name="background_card">#252525</color>
+    <color name="text">#FFFFFF</color>
+    <color name="text_secondary">#AAAAAA</color>
+    <color name="text_muted">#777777</color>
+    <color name="success">#00CC66</color>
+    <color name="warning">#FFCC00</color>
+    <color name="danger">#FF3B30</color>
+    <color name="border">#333333</color>
+    <color name="overlay">#B3000000</color>
+</resources>
