@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
-
     <!-- Header -->
     <include
         android:id="@+id/header"
@@ -33,14 +32,14 @@
 
         <FrameLayout
             android:id="@+id/lock_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/bg_control_icon">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_lock"
                 app:tint="@color/text" />
@@ -48,13 +47,13 @@
 
         <FrameLayout
             android:id="@+id/engine_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
             android:background="@drawable/bg_control_icon">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_power"
                 app:tint="@color/text" />
@@ -66,20 +65,22 @@
         android:id="@+id/car_image_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="16dp"
+        android:layout_margin="10dp"
         app:layout_constraintBottom_toTopOf="@+id/gps_status"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quick_controls">
 
+        <!-- Status Indicators -->
         <ImageView
             android:id="@+id/car_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginEnd="50dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/car_image" />
+            android:src="@drawable/car_image"
+            app:tint="@color/text" />
 
-        <!-- Status Indicators -->
         <LinearLayout
             android:id="@+id/status_indicators"
             android:layout_width="wrap_content"
@@ -95,8 +96,8 @@
                 android:padding="4dp">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:src="@drawable/ic_battery"
                     app:tint="@color/primary" />
 
@@ -104,22 +105,21 @@
                     android:id="@+id/battery_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
                     android:textColor="@color/text"
                     android:textSize="14sp"
                     tools:text="14.1V" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="4dp">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:src="@drawable/ic_droplet"
                     app:tint="@color/primary" />
 
@@ -127,22 +127,21 @@
                     android:id="@+id/fuel_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
                     android:textColor="@color/text"
                     android:textSize="14sp"
                     tools:text="18л" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="4dp">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:src="@drawable/ic_gauge"
                     app:tint="@color/primary" />
 
@@ -150,22 +149,21 @@
                     android:id="@+id/engine_temp_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
                     android:textColor="@color/text"
                     android:textSize="14sp"
                     tools:text="66°" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="4dp">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:src="@drawable/ic_thermometer"
                     app:tint="@color/primary" />
 
@@ -173,22 +171,21 @@
                     android:id="@+id/cabin_temp_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
                     android:textColor="@color/text"
                     android:textSize="14sp"
                     tools:text="28°" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="4dp">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:src="@drawable/ic_cloud_sun"
                     app:tint="@color/primary" />
 
@@ -196,7 +193,6 @@
                     android:id="@+id/outside_temp_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
                     android:textColor="@color/text"
                     android:textSize="14sp"
                     tools:text="9°" />
@@ -218,7 +214,7 @@
             android:id="@+id/gps_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_error_message"
+            android:background="@color/background_light"
             android:paddingHorizontal="16dp"
             android:paddingVertical="8dp"
             android:text="Данные GPS не доступны"
@@ -232,12 +228,13 @@
             android:id="@+id/no_data_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_info_message"
+            android:background="@drawable/bg_error_message"
             android:paddingHorizontal="16dp"
             android:paddingVertical="8dp"
             android:text="Нет данных"
-            android:textColor="@color/text"
-            android:textSize="14sp"
+            android:textColor="@color/danger"
+            android:textSize="16sp"
+            android:textStyle="bold"
             android:visibility="gone"
             tools:visibility="visible" />
     </LinearLayout>
@@ -247,7 +244,7 @@
         android:id="@+id/bottom_controls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_light"
+        android:background="@color/background"
         android:orientation="horizontal"
         android:paddingHorizontal="40dp"
         android:paddingVertical="16dp"
@@ -256,35 +253,45 @@
         <FrameLayout
             android:id="@+id/unlock_button"
             android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/unlock_icon"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_lock"
-                app:tint="@color/text" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/phone_button"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="80dp"
             android:layout_weight="1">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_gravity="center"
+                android:layout_gravity="center_horizontal"
                 app:cardBackgroundColor="@color/background_card"
                 app:cardCornerRadius="35dp"
-                app:cardElevation="4dp">
+                app:cardElevation="2dp">
 
                 <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:id="@+id/unlock_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_lock"
+                    app:tint="@color/text" />
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/phone_button"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center_horizontal"
+                app:cardBackgroundColor="@color/background_card"
+                app:cardCornerRadius="35dp"
+                app:cardElevation="2dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_phone"
                     app:tint="@color/text" />
@@ -294,16 +301,24 @@
         <FrameLayout
             android:id="@+id/engine_button"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:layout_weight="1">
+            <androidx.cardview.widget.CardView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center_horizontal"
+                app:cardBackgroundColor="@color/background_card"
+                app:cardCornerRadius="35dp"
+                app:cardElevation="2dp">
 
-            <ImageView
-                android:id="@+id/engine_start_icon"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_power"
-                app:tint="@color/text" />
+                <ImageView
+                    android:id="@+id/engine_start_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_power"
+                    app:tint="@color/text" />
+            </androidx.cardview.widget.CardView>
         </FrameLayout>
     </LinearLayout>
 

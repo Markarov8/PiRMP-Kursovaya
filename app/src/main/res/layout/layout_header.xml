@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/text"
-            android:textSize="24sp"
+            android:textSize="26sp"
             android:textStyle="bold"
             tools:text="Рыжик" />
 
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/text_secondary"
-            android:textSize="14sp"
+            android:textSize="16sp"
             tools:text="03 апр. 00:49 • Без охраны" />
     </LinearLayout>
 
@@ -38,16 +38,9 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/alarm_icon"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/img"
-            app:tint="@color/danger" />
-
-        <ImageView
             android:id="@+id/signal_icon"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginStart="12dp"
             android:src="@drawable/ic_signal"
             app:tint="@color/text" />

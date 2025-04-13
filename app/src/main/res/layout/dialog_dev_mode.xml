@@ -18,16 +18,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Режим разработчика"
+            android:text="@string/edit_menu"
             android:textColor="@color/text"
-            android:textSize="18sp"
+            android:textSize="@dimen/name_page"
             android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/close_button"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/img"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_back"
             app:tint="@color/text" />
     </LinearLayout>
 
@@ -55,9 +55,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="Статус автомобиля"
+                android:text="@string/statusauto"
                 android:textColor="@color/primary"
-                android:textSize="16sp"
+                android:textSize="18dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -70,9 +70,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Двигатель запущен"
+                    android:text="@string/engine_on"
                     android:textColor="@color/text"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/regular_text" />
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/engine_running_switch"
@@ -99,7 +99,7 @@
                     android:layout_weight="1"
                     android:text="Автомобиль заблокирован"
                     android:textColor="@color/text"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/regular_text" />
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/car_locked_switch"
@@ -126,7 +126,7 @@
                     android:layout_weight="1"
                     android:text="Тревога активна"
                     android:textColor="@color/text"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/regular_text" />
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/alarm_active_switch"
@@ -153,7 +153,7 @@
                     android:layout_weight="1"
                     android:text="Связь с автомобилем"
                     android:textColor="@color/text"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/regular_text" />
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/connection_switch"
@@ -170,12 +170,12 @@
                 android:layout_marginBottom="10dp"
                 android:text="Температура"
                 android:textColor="@color/primary"
-                android:textSize="16sp"
+                android:textSize="18dp"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:paddingVertical="12dp">
 
@@ -186,7 +186,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="Температура двигателя: 66°C"
                     android:textColor="@color/text"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <SeekBar
                     android:id="@+id/engine_temp_seekbar"
@@ -211,7 +211,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="Температура салона: 28°C"
                     android:textColor="@color/text"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <SeekBar
                     android:id="@+id/cabin_temp_seekbar"
@@ -236,7 +236,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="Температура на улице: 9°C"
                     android:textColor="@color/text"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <SeekBar
                     android:id="@+id/outside_temp_seekbar"
@@ -255,7 +255,7 @@
                 android:layout_marginBottom="10dp"
                 android:text="Уровни"
                 android:textColor="@color/primary"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -271,7 +271,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="Уровень топлива: 18л"
                     android:textColor="@color/text"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <SeekBar
                     android:id="@+id/fuel_level_seekbar"
@@ -296,7 +296,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="Напряжение батареи: 14.1V"
                     android:textColor="@color/text"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <SeekBar
                     android:id="@+id/battery_level_seekbar"
@@ -315,7 +315,7 @@
                 android:layout_marginBottom="10dp"
                 android:text="Местоположение"
                 android:textColor="@color/primary"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -351,8 +351,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:text="Адрес"
-                    android:textColor="@color/text"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/address_input"
@@ -361,7 +360,6 @@
                     android:background="@drawable/bg_edit_text"
                     android:hint="Введите адрес"
                     android:padding="12dp"
-                    android:textColor="@color/text"
                     android:textColorHint="@color/text_muted"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -372,7 +370,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingVertical="10dp"
-                android:visibility="gone"
                 tools:visibility="visible">
 
                 <TextView
@@ -380,18 +377,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:text="Широта"
-                    android:textColor="@color/text"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/latitude_input"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@drawable/bg_edit_text"
                     android:hint="Введите широту"
                     android:inputType="numberDecimal|numberSigned"
                     android:padding="12dp"
-                    android:textColor="@color/text"
                     android:textColorHint="@color/text_muted"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -399,10 +394,9 @@
             <LinearLayout
                 android:id="@+id/longitude_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:paddingVertical="10dp"
-                android:visibility="gone"
                 tools:visibility="visible">
 
                 <TextView
@@ -410,8 +404,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:text="Долгота"
-                    android:textColor="@color/text"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/longitude_input"
@@ -421,7 +414,6 @@
                     android:hint="Введите долготу"
                     android:inputType="numberDecimal|numberSigned"
                     android:padding="12dp"
-                    android:textColor="@color/text"
                     android:textColorHint="@color/text_muted"
                     android:textSize="16sp" />
             </LinearLayout>

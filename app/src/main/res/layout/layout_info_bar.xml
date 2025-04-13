@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background"
+    android:background="@color/background_light"
     android:orientation="horizontal"
     android:paddingHorizontal="16dp"
     android:paddingVertical="8dp">
@@ -15,30 +15,21 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:textColor="@color/text"
-        android:textSize="14sp"
+        android:textSize="16sp"
         tools:text="41.27₽" />
-
-    <TextView
-        android:id="@+id/distance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:text="0 км"
-        android:textColor="@color/text"
-        android:textSize="14sp" />
 
     <ImageView
         android:id="@+id/message_button"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
         android:layout_marginEnd="20dp"
         android:src="@drawable/ic_message_square"
         app:tint="@color/primary" />
 
     <ImageView
         android:id="@+id/phone_call_button"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
         android:src="@drawable/ic_phone"
         app:tint="@color/primary" />
 </LinearLayout>

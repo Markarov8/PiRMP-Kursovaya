@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Pandora Connect"
+        android:text="Car Connect"
         android:textColor="@color/text"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -43,6 +43,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
+
+<!--    Сделать проверку на корректность ввода данных. Данные взять из уже существующего профиля-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -115,6 +117,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_button" />
 
+<!--    Сделать ссылку на звонок на номер поддержки-->
     <TextView
         android:id="@+id/forgot_password"
         android:layout_width="wrap_content"
@@ -126,16 +129,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
 
-    <TextView
-        android:id="@+id/version"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="Версия 1.30"
-        android:textColor="@color/text_muted"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
