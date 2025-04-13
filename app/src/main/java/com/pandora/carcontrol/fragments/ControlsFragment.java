@@ -70,10 +70,10 @@ public class ControlsFragment extends Fragment {
         });
 
         // Dev mode button
-        binding.devModeButton.setOnClickListener(v -> {
-            viewModel.toggleDevMode();
-            Toast.makeText(requireContext(), "Режим разработчика активирован", Toast.LENGTH_SHORT).show();
-        });
+//        binding.devModeButton.setOnClickListener(v -> {
+//            viewModel.toggleDevMode();
+//            Toast.makeText(requireContext(), "Режим разработчика активирован", Toast.LENGTH_SHORT).show();
+//        });
     }
 
     private void observeCarStatus() {
@@ -116,9 +116,9 @@ public class ControlsFragment extends Fragment {
         });
 
         // Observe dev mode
-        viewModel.getIsDevMode().observe(getViewLifecycleOwner(), isDevMode -> {
-            binding.devModeButton.setVisibility(isDevMode ? View.VISIBLE : View.GONE);
-        });
+//        viewModel.getIsDevMode().observe(getViewLifecycleOwner(), isDevMode -> {
+//            binding.devModeButton.setVisibility(isDevMode ? View.VISIBLE : View.GONE);
+//        });
     }
 
     @Override

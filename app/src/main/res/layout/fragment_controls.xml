@@ -48,13 +48,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/lock_button"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_button_primary"
@@ -63,6 +63,7 @@
                     android:padding="12dp">
 
                     <ImageView
+                        android:id="@+id/lock_button_icon"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_marginEnd="8dp"
@@ -82,7 +83,7 @@
                 <LinearLayout
                     android:id="@+id/engine_button"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_button_primary"
@@ -110,14 +111,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/alarm_button"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_button_danger"
@@ -133,6 +134,7 @@
                         app:tint="@color/text" />
 
                     <TextView
+                        android:id="@+id/alarm_on_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Включить сирену"
@@ -144,7 +146,7 @@
                 <LinearLayout
                     android:id="@+id/locate_button"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_button_secondary"
@@ -607,32 +609,6 @@
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
-            <LinearLayout
-                android:id="@+id/dev_mode_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_button_secondary"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:visibility="gone"
-                tools:visibility="visible">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_wrench"
-                    app:tint="@color/text" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Режим разработчика"
-                    android:textColor="@color/text"
-                    android:textSize="16sp" />
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
