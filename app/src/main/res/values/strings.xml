@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Pandora Car Control</string>
+    <string name="statusauto">Статус автомобиля</string>
+    <string name="engine_on">Двигатель запущен</string>
+    <string name="edit_menu">Режим разработчика</string>
 </resources>

@@ -5,6 +5,7 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 loadFragment(new LoginFragment());
             }
         });
+//      WindowCompat.setDecorFitsSystemWindows(window, false)
     }
 
     @Override
