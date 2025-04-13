@@ -540,7 +540,7 @@ public class CarRepository {
                 true, // autoCool
                 22.0f, // targetTemp
                 41.27f, // simBalance
-                "+7916*******" // simNumber
+                "+79163435790" // simNumber
         );
     }
 
@@ -549,10 +549,10 @@ public class CarRepository {
                 "Рыжик", // carName
                 "Артём", // userName
                 "Маркаров", // userLastName
-                "1078****", // accountNumber
-                "DX****", // deviceCode
-                "1.51", // verificationCode
-                "1.30****" // appVersion
+                "108795334", // accountNumber
+                "DHNR90P", // deviceCode
+                "1.142", // verificationCode
+                "1.29.3" // appVersion
         );
     }
 }

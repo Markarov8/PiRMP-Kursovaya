@@ -66,8 +66,8 @@ public class EditProfileDialogFragment extends DialogFragment {
         binding.carNameInput.setText(profile.getCarName());
         binding.userNameInput.setText(profile.getUserName());
         binding.userLastNameInput.setText(profile.getUserLastName());
-        binding.accountNumberInput.setText(profile.getAccountNumber());
-        binding.deviceCodeInput.setText(profile.getDeviceCode());
+//        binding.accountNumberInput.setText(profile.getAccountNumber());
+//        binding.deviceCodeInput.setText(profile.getDeviceCode());
         binding.verificationCodeInput.setText(profile.getVerificationCode());
     }
 
@@ -75,8 +75,8 @@ public class EditProfileDialogFragment extends DialogFragment {
         String carName = binding.carNameInput.getText().toString();
         String userName = binding.userNameInput.getText().toString();
         String userLastName = binding.userLastNameInput.getText().toString();
-        String accountNumber = binding.accountNumberInput.getText().toString();
-        String deviceCode = binding.deviceCodeInput.getText().toString();
+//        String accountNumber = binding.accountNumberInput.getText().toString();
+//        String deviceCode = binding.deviceCodeInput.getText().toString();
         String verificationCode = binding.verificationCodeInput.getText().toString();
 
         CarProfile currentProfile = viewModel.getCarProfile().getValue();
@@ -85,8 +85,8 @@ public class EditProfileDialogFragment extends DialogFragment {
                     carName,
                     userName,
                     userLastName,
-                    accountNumber,
-                    deviceCode,
+                    "108795334",
+                    "DHNR90P",
                     verificationCode,
                     currentProfile.getAppVersion()
             );

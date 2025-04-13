@@ -20,14 +20,14 @@
             android:layout_weight="1"
             android:text="Редактирование профиля"
             android:textColor="@color/text"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/close_button"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/img"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_back"
             app:tint="@color/text" />
     </LinearLayout>
 
@@ -62,7 +62,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="Имя автомобиля"
                     android:textColor="@color/text"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/car_name_input"
@@ -88,7 +88,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="Имя"
                     android:textColor="@color/text"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/user_name_input"
@@ -114,7 +114,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="Фамилия"
                     android:textColor="@color/text"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/user_last_name_input"
@@ -128,58 +128,58 @@
                     android:textSize="16sp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingVertical="10dp">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:paddingVertical="10dp">-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="Номер аккаунта"
-                    android:textColor="@color/text"
-                    android:textSize="14sp" />
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="8dp"-->
+<!--                    android:text="Номер аккаунта"-->
+<!--                    android:textColor="@color/text"-->
+<!--                    android:textSize="16sp" />-->
 
-                <EditText
-                    android:id="@+id/account_number_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_edit_text"
-                    android:hint="Введите номер аккаунта"
-                    android:inputType="text"
-                    android:padding="12dp"
-                    android:textColor="@color/text"
-                    android:textColorHint="@color/text_muted"
-                    android:textSize="16sp" />
-            </LinearLayout>
+<!--                <EditText-->
+<!--                    android:id="@+id/account_number_input"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/bg_edit_text"-->
+<!--                    android:hint="Введите номер аккаунта"-->
+<!--                    android:inputType="text"-->
+<!--                    android:padding="12dp"-->
+<!--                    android:textColor="@color/text"-->
+<!--                    android:textColorHint="@color/text_muted"-->
+<!--                    android:textSize="16sp" />-->
+<!--            </LinearLayout>-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingVertical="10dp">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:paddingVertical="10dp">-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="Код устройства"
-                    android:textColor="@color/text"
-                    android:textSize="14sp" />
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="8dp"-->
+<!--                    android:text="Код устройства"-->
+<!--                    android:textColor="@color/text"-->
+<!--                    android:textSize="16sp" />-->
 
-                <EditText
-                    android:id="@+id/device_code_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_edit_text"
-                    android:hint="Введите код устройства"
-                    android:padding="12dp"
-                    android:textColor="@color/text"
-                    android:textColorHint="@color/text_muted"
-                    android:textSize="16sp" />
-            </LinearLayout>
+<!--                <EditText-->
+<!--                    android:id="@+id/device_code_input"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/bg_edit_text"-->
+<!--                    android:hint="Введите код устройства"-->
+<!--                    android:padding="12dp"-->
+<!--                    android:textColor="@color/text"-->
+<!--                    android:textColorHint="@color/text_muted"-->
+<!--                    android:textSize="16sp" />-->
+<!--            </LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -193,7 +193,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="Код верификации"
                     android:textColor="@color/text"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/verification_code_input"
