@@ -2,13 +2,17 @@ package com.pandora.carcontrol;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
+
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.pandora.carcontrol.databinding.ActivityMainBinding;
@@ -23,20 +27,27 @@ import com.pandora.carcontrol.viewmodels.MainViewModel;
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private ActivityMainBinding binding;
-    private MainViewModel viewModel;
-    private PreferenceManager preferenceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Для контейнера фрагментов
+        View fragmentContainer = findViewById(R.id.fragment_container);
+        ViewCompat.setOnApplyWindowInsetsListener(fragmentContainer, (v, insets) -> {
+            int statusBarHeight = insets.getInsets(WindowInsetsCompat.Type.systemBars()).top;
+            v.setPadding(0, statusBarHeight, 0, 0);
+            return insets;
+        });
+
         // Initialize ViewModel
-        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        MainViewModel viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         // Initialize PreferenceManager
-        preferenceManager = new PreferenceManager(this);
+        PreferenceManager preferenceManager = new PreferenceManager(this);
 
         // Setup bottom navigation
         binding.bottomNavigation.setOnNavigationItemSelectedListener(this);
