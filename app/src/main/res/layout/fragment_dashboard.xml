@@ -74,12 +74,11 @@
         <!-- Status Indicators -->
         <ImageView
             android:id="@+id/car_image"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="50dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/car_image"
-            app:tint="@color/text" />
+            android:scaleType="fitEnd"
+            android:src="@drawable/car_second" />
 
         <LinearLayout
             android:id="@+id/status_indicators"
