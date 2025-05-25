@@ -19,15 +19,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:text="Редактирование профиля"
             android:textColor="@color/text"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/close_button"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="29dp"
+            android:layout_height="30dp"
             android:src="@drawable/ic_back"
             app:tint="@color/text" />
     </LinearLayout>
@@ -63,7 +64,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="Имя автомобиля"
                     android:textColor="@color/text"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/car_name_input"
@@ -74,7 +75,7 @@
                     android:padding="12dp"
                     android:textColor="@color/text"
                     android:textColorHint="@color/text_muted"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -89,7 +90,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="Имя"
                     android:textColor="@color/text"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/user_name_input"
@@ -100,7 +101,7 @@
                     android:padding="12dp"
                     android:textColor="@color/text"
                     android:textColorHint="@color/text_muted"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -115,7 +116,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="Фамилия"
                     android:textColor="@color/text"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/user_last_name_input"
@@ -126,7 +127,7 @@
                     android:padding="12dp"
                     android:textColor="@color/text"
                     android:textColorHint="@color/text_muted"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
 <!--            <LinearLayout-->
@@ -194,7 +195,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="Код верификации"
                     android:textColor="@color/text"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/verification_code_input"
@@ -205,7 +206,7 @@
                     android:padding="12dp"
                     android:textColor="@color/text"
                     android:textColorHint="@color/text_muted"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <Button
@@ -217,7 +218,7 @@
                 android:padding="16dp"
                 android:text="СОХРАНИТЬ"
                 android:textColor="@color/text"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
