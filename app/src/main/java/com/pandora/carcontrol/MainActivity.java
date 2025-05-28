@@ -25,6 +25,9 @@ import com.pandora.carcontrol.utils.PreferenceManager;
 import com.pandora.carcontrol.viewmodels.MainViewModel;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+    /** Основная функция приложения
+     * Описывает базовое управление фрагментами
+     */
 
     private ActivityMainBinding binding;
 
