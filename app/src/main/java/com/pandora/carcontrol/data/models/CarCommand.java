@@ -13,6 +13,12 @@ public class CarCommand {
     private String status;
     private String message;
 
+    /**
+     * Основные геттеры и сеттеры программы.
+     * Содержит команды на получение состояния отдельных параметров,
+     * получение id конкретных элементов.
+     */
+
     public CarCommand(long id, String type, String timestamp, String status, String message) {
         this.id = id;
         this.type = type;
