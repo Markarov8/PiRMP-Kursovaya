@@ -81,7 +81,7 @@ public class ControlsFragment extends Fragment {
             if (status == null) return;
 
             // Update button texts
-            binding.lockButtonText.setText(status.isLocked() ? "Разблокировать" : "Заблокировать");
+            binding.lockButtonText.setText(status.isLocked() ? "Открыть автомобиль" : "Закрыть автомобиль");
             binding.engineButtonText.setText(status.isRunning() ? "Остановить двигатель" : "Запустить двигатель");
 
             // Update status cards
