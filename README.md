@@ -35,6 +35,11 @@ Car Control — это Android-приложение, написанное на �
 
 ##  Интерфейс приложения
 
-Интерфейс главного экрана
+Интерфейс главной вкладки/вкладки с историей действий/вкладки управления/вкладки профиля
 
 ![image](https://github.com/user-attachments/assets/511c9d67-c055-4305-b722-717f21001936)
+![image](https://github.com/user-attachments/assets/9b3f937e-cc68-4ead-9893-c6d5f539939d)
+![image](https://github.com/user-attachments/assets/08cbc412-58b9-4fbc-bcc0-72b5011bc959)
+![image](https://github.com/user-attachments/assets/f10148c6-396c-45dd-8123-77e8316325f4)
+
+
