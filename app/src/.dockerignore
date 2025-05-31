@@ -1,0 +1,8 @@
+.git
+*.log
+*.iml
+.gradle
+.mvn
+.idea
+env/
+__pycache__
