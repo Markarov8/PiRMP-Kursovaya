@@ -225,9 +225,7 @@
                     tools:text="SIM +79163555790 • 41.27₽" />
             </LinearLayout>
         </LinearLayout>
-        </LinearLayout>
-        <!-- Phone Section -->
-
+    </LinearLayout>
 </androidx.core.widget.NestedScrollView>
 
 <TextView
