@@ -69,6 +69,15 @@ public class LoginFragment extends Fragment {
                         }
                     });
         });
+
+        binding.forgotPassword.setOnClickListener(v -> {
+            // Получите логин и пароль из ViewModel
+            String login = viewModel.getAccountNumber().getValue();
+            String password = viewModel.getVerificationCode().getValue();
+            // Покажите уведомление
+            Toast.makeText(requireContext(), "Логин, Пароль: " + login + ", " + password, Toast.LENGTH_LONG).show();
+        });
+
     }
 
     @Override
