@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 loadFragment(new LoginFragment());
             }
         });
-//      WindowCompat.setDecorFitsSystemWindows(window, false)
     }
 
     @Override

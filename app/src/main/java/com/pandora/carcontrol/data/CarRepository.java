@@ -54,7 +54,7 @@ public class CarRepository {
         @Override
         public void run() {
             updateRandomValues();
-            updateHandler.postDelayed(this, 1000); // Update every 5 seconds
+            updateHandler.postDelayed(this, 1000); // Update every 1 seconds
         }
     };
 
