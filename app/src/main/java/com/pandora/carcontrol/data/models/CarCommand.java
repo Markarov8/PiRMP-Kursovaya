@@ -3,11 +3,11 @@ package com.pandora.carcontrol.data.models;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+// Модель данных для команды автомобиля
 @Entity(tableName = "car_commands")
 public class CarCommand {
     @PrimaryKey(autoGenerate = true)
     private long id;
-
     private String type;
     private String timestamp;
     private String status;
@@ -18,7 +18,6 @@ public class CarCommand {
      * Содержит команды на получение состояния отдельных параметров,
      * получение id конкретных элементов.
      */
-
     public CarCommand(long id, String type, String timestamp, String status, String message) {
         this.id = id;
         this.type = type;

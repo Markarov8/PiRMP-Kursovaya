@@ -3,24 +3,21 @@ package com.pandora.carcontrol.data.models;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+// Модель данных для настроек автомобиля
 @Entity(tableName = "car_settings")
 public class CarSettings {
     @PrimaryKey
     private int id = 1;
-
     private boolean autoStartEnabled;
     private float autoStartTemperature;
     private String autoStartTime;
-
     private boolean notifyOnAlarm;
     private boolean notifyOnUnlock;
     private boolean geofenceEnabled;
     private float geofenceRadius;
-
     private boolean autoHeat;
     private boolean autoCool;
     private float targetTemp;
-
     private float simBalance;
     private String simNumber;
 

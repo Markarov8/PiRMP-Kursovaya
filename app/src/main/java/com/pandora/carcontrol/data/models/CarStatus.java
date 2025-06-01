@@ -4,11 +4,11 @@ import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+// Модель данных для статуса автомобиля
 @Entity(tableName = "car_status")
 public class CarStatus {
     @PrimaryKey
-    private int id = 1; // Single instance
-
+    private int id = 1; // Единственный экземпляр
     private boolean isRunning;
     private boolean isLocked;
     private boolean isAlarm;
@@ -17,10 +17,8 @@ public class CarStatus {
     private float outsideTemp;
     private float fuelLevel;
     private float batteryLevel;
-
     @Embedded
     private Location location;
-
     private String lastUpdate;
     private boolean hasConnection;
 

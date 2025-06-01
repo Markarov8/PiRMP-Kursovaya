@@ -3,10 +3,8 @@ package com.pandora.carcontrol.data;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
 import com.pandora.carcontrol.data.database.AppDatabase;
 import com.pandora.carcontrol.data.database.CarCommandDao;
 import com.pandora.carcontrol.data.database.CarHistoryDao;
@@ -19,7 +17,6 @@ import com.pandora.carcontrol.data.models.CarProfile;
 import com.pandora.carcontrol.data.models.CarSettings;
 import com.pandora.carcontrol.data.models.CarStatus;
 import com.pandora.carcontrol.data.models.Location;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,23 +26,20 @@ import java.util.Random;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+// Репозиторий для управления данными автомобиля
 public class CarRepository {
-
     private final CarStatusDao statusDao;
     private final CarSettingsDao settingsDao;
     private final CarProfileDao profileDao;
     private final CarCommandDao commandDao;
     private final CarHistoryDao historyDao;
-
     private final MutableLiveData<CarStatus> carStatus = new MutableLiveData<>();
     private final MutableLiveData<CarSettings> carSettings = new MutableLiveData<>();
     private final MutableLiveData<CarProfile> carProfile = new MutableLiveData<>();
     private final MutableLiveData<List<CarCommand>> commands = new MutableLiveData<>(new ArrayList<>());
     private final MutableLiveData<List<CarHistory>> history = new MutableLiveData<>(new ArrayList<>());
-
     private final Executor executor = Executors.newSingleThreadExecutor();
     private final Handler handler = new Handler(Looper.getMainLooper());
-
     private final Random random = new Random();
 
     // Частота обновления данных
@@ -54,7 +48,7 @@ public class CarRepository {
         @Override
         public void run() {
             updateRandomValues();
-            updateHandler.postDelayed(this, 1000); // Update every 1 seconds
+            updateHandler.postDelayed(this, 1000); // Обновление каждую секунду
         }
     };
 
@@ -65,17 +59,16 @@ public class CarRepository {
         profileDao = database.carProfileDao();
         commandDao = database.carCommandDao();
         historyDao = database.carHistoryDao();
-
         // Инициализация базовых значений
         initializeData();
-
         // Запуск периодического обновления данных
         startPeriodicUpdates();
     }
 
+    // Инициализация базовых данных, если они отсутствуют
     private void initializeData() {
         executor.execute(() -> {
-            // Проверка наличия ланных в ДБ
+            // Проверка наличия данных в базе данных
             CarStatus status = statusDao.getCarStatus();
             if (status == null) {
                 // Инициализация базовых значений
@@ -83,43 +76,42 @@ public class CarRepository {
                 statusDao.insert(status);
             }
             carStatus.postValue(status);
-
             CarSettings settings = settingsDao.getCarSettings();
             if (settings == null) {
                 settings = getDefaultCarSettings();
                 settingsDao.insert(settings);
             }
             carSettings.postValue(settings);
-
             CarProfile profile = profileDao.getCarProfile();
             if (profile == null) {
                 profile = getDefaultCarProfile();
                 profileDao.insert(profile);
             }
             carProfile.postValue(profile);
-
-            // Load history
+            // Загрузка истории
             List<CarHistory> historyList = historyDao.getAllHistory();
             history.postValue(historyList);
-
-            // Load commands
+            // Загрузка команд
             List<CarCommand> commandList = commandDao.getAllCommands();
             commands.postValue(commandList);
         });
     }
 
+    // Запуск периодического обновления данных
     private void startPeriodicUpdates() {
         updateHandler.post(updateRunnable);
     }
 
+    // Остановка периодического обновления данных
     private void stopPeriodicUpdates() {
         updateHandler.removeCallbacks(updateRunnable);
     }
 
+    // Обновление случайных значений статуса автомобиля
     private void updateRandomValues() {
         CarStatus currentStatus = carStatus.getValue();
         if (currentStatus != null && currentStatus.isHasConnection() && !isPendingCommand()) {
-            // Запуск рандомного изменения в случае наличия данных в БД
+            // Обновление значений в реальном времени
             CarStatus updatedStatus = new CarStatus(
                     currentStatus.isRunning(),
                     currentStatus.isLocked(),
@@ -134,11 +126,11 @@ public class CarRepository {
                     new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US).format(new Date()),
                     currentStatus.isHasConnection()
             );
-
             updateCarStatus(updatedStatus);
         }
     }
 
+    // Проверка наличия ожидающих команд
     private boolean isPendingCommand() {
         List<CarCommand> commandList = commands.getValue();
         if (commandList != null) {
@@ -151,11 +143,12 @@ public class CarRepository {
         return false;
     }
 
-    // Car Status
+    // Получение текущего статуса автомобиля
     public LiveData<CarStatus> getCarStatus() {
         return carStatus;
     }
 
+    // Обновление статуса автомобиля
     public void updateCarStatus(CarStatus status) {
         executor.execute(() -> {
             statusDao.update(status);
@@ -163,11 +156,12 @@ public class CarRepository {
         });
     }
 
-    // Car Settings
+    // Получение текущих настроек автомобиля
     public LiveData<CarSettings> getCarSettings() {
         return carSettings;
     }
 
+    // Обновление настроек автомобиля
     public void updateCarSettings(CarSettings settings) {
         executor.execute(() -> {
             settingsDao.update(settings);
@@ -175,11 +169,12 @@ public class CarRepository {
         });
     }
 
-    // Car Profile
+    // Получение текущего профиля автомобиля
     public LiveData<CarProfile> getCarProfile() {
         return carProfile;
     }
 
+    // Обновление профиля автомобиля
     public void updateCarProfile(CarProfile profile) {
         executor.execute(() -> {
             profileDao.update(profile);
@@ -187,18 +182,16 @@ public class CarRepository {
         });
     }
 
-    // Commands
+    // Отправка команды автомобилю
     public void sendCommand(String commandType) {
         executor.execute(() -> {
-            // Create a new command
+            // Создание новой команды
             String timestamp = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US).format(new Date());
             CarCommand command = new CarCommand(0, commandType, timestamp, "PENDING", null);
-
-            // Insert into database
+            // Вставка в базу данных
             long id = commandDao.insert(command);
             command.setId(id);
-
-            // Update LiveData
+            // Обновление LiveData
             List<CarCommand> currentCommands = commands.getValue();
             if (currentCommands == null) {
                 currentCommands = new ArrayList<>();
@@ -206,25 +199,23 @@ public class CarRepository {
             currentCommands.add(0, command);
             List<CarCommand> finalCurrentCommands = currentCommands;
             handler.post(() -> commands.setValue(finalCurrentCommands));
-
             // Задержка изменений данных (симуляция работы через сеть)
             handler.postDelayed(() -> processCommand(command), 800);
         });
     }
 
+    // Обработка команды
     private void processCommand(CarCommand command) {
         executor.execute(() -> {
             CarStatus currentStatus = carStatus.getValue();
             if (currentStatus == null) return;
-
             // Проверка наличия связи
             if (!currentStatus.isHasConnection()) {
-                // Update command status to failed
+                // Обновление статуса команды на неудачное
                 command.setStatus("FAILED");
                 command.setMessage("Нет связи с автомобилем");
                 commandDao.update(command);
-
-                // Update LiveData
+                // Обновление LiveData
                 List<CarCommand> currentCommands = commands.getValue();
                 if (currentCommands != null) {
                     for (int i = 0; i < currentCommands.size(); i++) {
@@ -237,12 +228,10 @@ public class CarRepository {
                 }
                 return;
             }
-
-            // Update command status to success
+            // Обновление статуса команды на успешное
             command.setStatus("SUCCESS");
             commandDao.update(command);
-
-            // Update LiveData
+            // Обновление LiveData
             List<CarCommand> currentCommands = commands.getValue();
             if (currentCommands != null) {
                 for (int i = 0; i < currentCommands.size(); i++) {
@@ -253,11 +242,9 @@ public class CarRepository {
                 }
                 handler.post(() -> commands.setValue(currentCommands));
             }
-
-            // Update car status based on command
+            // Обновление статуса автомобиля на основе команды
             CarStatus updatedStatus = null;
             CarHistory historyEntry = null;
-
             switch (command.getType()) {
                 case "START_ENGINE":
                     updatedStatus = new CarStatus(
@@ -273,7 +260,6 @@ public class CarRepository {
                             new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US).format(new Date()),
                             currentStatus.isHasConnection()
                     );
-
                     historyEntry = new CarHistory(
                             0,
                             "ENGINE_START",
@@ -282,7 +268,6 @@ public class CarRepository {
                             null
                     );
                     break;
-
                 case "STOP_ENGINE":
                     updatedStatus = new CarStatus(
                             false, // isRunning
@@ -297,7 +282,6 @@ public class CarRepository {
                             new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US).format(new Date()),
                             currentStatus.isHasConnection()
                     );
-
                     historyEntry = new CarHistory(
                             0,
                             "ENGINE_STOP",
@@ -306,7 +290,6 @@ public class CarRepository {
                             null
                     );
                     break;
-
                 case "LOCK":
                     updatedStatus = new CarStatus(
                             currentStatus.isRunning(),

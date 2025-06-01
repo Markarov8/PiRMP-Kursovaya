@@ -3,11 +3,11 @@ package com.pandora.carcontrol.data.models;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+// Модель данных для профиля автомобиля
 @Entity(tableName = "car_profile")
 public class CarProfile {
     @PrimaryKey
-    private int id = 1; // Single instance
-
+    private int id = 1; // Единственный экземпляр
     private String carName;
     private String userName;
     private String userLastName;

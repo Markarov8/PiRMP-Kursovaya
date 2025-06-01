@@ -4,14 +4,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.pandora.carcontrol.R;
 import com.pandora.carcontrol.data.models.CarHistory;
 import com.pandora.carcontrol.utils.DateFormatter;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,32 +18,30 @@ import java.util.Locale;
 import java.util.Map;
 
 public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
-
     private final List<Object> items = new ArrayList<>();
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
 
+    // Обновление списка данных адаптера
     public void submitList(Map<String, List<CarHistory>> groupedHistory) {
         items.clear();
-
         for (Map.Entry<String, List<CarHistory>> entry : groupedHistory.entrySet()) {
-            // Add date header
+            // Добавление даты как заголовка
             items.add(entry.getKey());
-
-            // Add history items
+            // Добавление элементов истории
             items.addAll(entry.getValue());
         }
-
         notifyDataSetChanged();
     }
 
+    // Определение типа элемента в списке (заголовок или элемент истории)
     @Override
     public int getItemViewType(int position) {
         return items.get(position) instanceof String ? TYPE_HEADER : TYPE_ITEM;
     }
 
+    // Создание ViewHolder в зависимости от типа элемента
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -59,12 +54,12 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
+    // Привязка данных к элементам интерфейса
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == TYPE_HEADER) {
             HeaderViewHolder headerHolder = (HeaderViewHolder) holder;
             String dateString = (String) items.get(position);
-
             try {
                 Date date = new SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(dateString);
                 if (date != null) {
@@ -76,10 +71,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         } else {
             ItemViewHolder itemHolder = (ItemViewHolder) holder;
             CarHistory history = (CarHistory) items.get(position);
-
             // Создание времени события
             itemHolder.timeText.setText(DateFormatter.formatTime(history.getTimestamp()));
-
             // Создание события в списке истории действий
             switch (history.getType()) {
                 case "ENGINE_START":
@@ -141,26 +134,27 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
+    // Возвращает количество элементов в списке
     @Override
     public int getItemCount() {
         return items.size();
     }
 
+    // ViewHolder для заголовков
     static class HeaderViewHolder extends RecyclerView.ViewHolder {
         TextView dateText;
-
         HeaderViewHolder(@NonNull View itemView) {
             super(itemView);
             dateText = itemView.findViewById(R.id.date_text);
         }
     }
 
+    // ViewHolder для элементов истории
     static class ItemViewHolder extends RecyclerView.ViewHolder {
         android.widget.ImageView iconView;
         TextView timeText;
         TextView titleText;
         TextView modeText;
-
         ItemViewHolder(@NonNull View itemView) {
             super(itemView);
             iconView = itemView.findViewById(R.id.icon);

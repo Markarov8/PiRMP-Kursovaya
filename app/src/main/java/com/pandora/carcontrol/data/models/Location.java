@@ -1,5 +1,6 @@
 package com.pandora.carcontrol.data.models;
 
+// Модель данных для местоположения автомобиля
 public class Location {
     private Double latitude;
     private Double longitude;

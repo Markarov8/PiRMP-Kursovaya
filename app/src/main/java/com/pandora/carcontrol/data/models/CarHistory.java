@@ -3,11 +3,11 @@ package com.pandora.carcontrol.data.models;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+// Модель данных для записи истории
 @Entity(tableName = "car_history")
 public class CarHistory {
     @PrimaryKey(autoGenerate = true)
     private long id;
-
     private String type;
     private String timestamp;
     private String details;
