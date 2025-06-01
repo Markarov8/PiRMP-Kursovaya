@@ -1,6 +1,7 @@
 package com.pandora.carcontrol.fragments;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,10 +9,12 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -106,9 +109,9 @@ public class DashboardFragment extends Fragment {
                 Toast.makeText(requireContext(), "Режим разработчика активирован", Toast.LENGTH_SHORT).show();
             }
 
-            // Reset tap count after 3 seconds
+            // Reset tap count after 2 seconds
             tapResetHandler.removeCallbacksAndMessages(null);
-            tapResetHandler.postDelayed(() -> tapCount = 0, 3000);
+            tapResetHandler.postDelayed(() -> tapCount = 0, 2000);
         });
 
         // Dev mode button
@@ -140,7 +143,12 @@ public class DashboardFragment extends Fragment {
         if (!status.isHasConnection()) {
             binding.noDataText.setVisibility(View.VISIBLE);
             binding.gpsText.setVisibility(View.GONE);
+
+            ImageView signalIcon = binding.header.signalIcon;
+            signalIcon.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.danger)));;
         } else {
+            ImageView signalIcon = binding.header.signalIcon;
+            signalIcon.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.text)));
             binding.noDataText.setVisibility(View.GONE);
 
             if (status.getLocation().getLatitude() == null) {
@@ -152,7 +160,6 @@ public class DashboardFragment extends Fragment {
 
         // Update bottom controls
         binding.unlockIcon.setImageResource(status.isLocked() ? R.drawable.ic_lock_open : R.drawable.ic_lock);
-//        binding.engineIcon.setImageResource(status.isRunning() ? R.drawable.ic_power : R.drawable.ic_power);
     }
 
     @Override

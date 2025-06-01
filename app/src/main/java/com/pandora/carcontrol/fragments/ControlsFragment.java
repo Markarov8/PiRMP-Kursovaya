@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,9 +15,6 @@ import com.pandora.carcontrol.data.models.CarStatus;
 import com.pandora.carcontrol.databinding.FragmentControlsBinding;
 import com.pandora.carcontrol.utils.DateFormatter;
 import com.pandora.carcontrol.viewmodels.MainViewModel;
-
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 public class ControlsFragment extends Fragment {
 
@@ -68,12 +64,6 @@ public class ControlsFragment extends Fragment {
         binding.locateButton.setOnClickListener(v -> {
             viewModel.sendCommand("LOCATE");
         });
-
-        // Dev mode button
-//        binding.devModeButton.setOnClickListener(v -> {
-//            viewModel.toggleDevMode();
-//            Toast.makeText(requireContext(), "Режим разработчика активирован", Toast.LENGTH_SHORT).show();
-//        });
     }
 
     private void observeCarStatus() {
@@ -82,6 +72,8 @@ public class ControlsFragment extends Fragment {
 
             // Update button texts
             binding.lockButtonText.setText(status.isLocked() ? "Открыть автомобиль" : "Закрыть автомобиль");
+            binding.lockButtonIcon.setImageResource(status.isLocked() ? R.drawable.ic_lock_open : R.drawable.ic_lock);
+
             binding.engineButtonText.setText(status.isRunning() ? "Остановить двигатель" : "Запустить двигатель");
 
             // Update status cards
@@ -115,10 +107,6 @@ public class ControlsFragment extends Fragment {
             binding.lastUpdateTime.setText(DateFormatter.formatTime(status.getLastUpdate()));
         });
 
-        // Observe dev mode
-//        viewModel.getIsDevMode().observe(getViewLifecycleOwner(), isDevMode -> {
-//            binding.devModeButton.setVisibility(isDevMode ? View.VISIBLE : View.GONE);
-//        });
     }
 
     @Override
