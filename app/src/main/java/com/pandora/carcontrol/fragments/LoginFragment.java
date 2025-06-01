@@ -11,6 +11,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.pandora.carcontrol.databinding.FragmentLoginBinding;
 import com.pandora.carcontrol.viewmodels.MainViewModel;
 
@@ -18,6 +23,7 @@ public class LoginFragment extends Fragment {
 
     private FragmentLoginBinding binding;
     private MainViewModel viewModel;
+    private FirebaseAuth mAuth;
 
     @Nullable
     @Override
@@ -31,26 +37,37 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+        mAuth = FirebaseAuth.getInstance();
 
         binding.loginButton.setOnClickListener(v -> {
-            String username = binding.usernameInput.getText().toString().trim();
+            String email = binding.usernameInput.getText().toString().trim();
             String password = binding.passwordInput.getText().toString().trim();
 
-            if (username.isEmpty() || password.isEmpty()) {
-                Toast.makeText(requireContext(), "Пожалуйста, введите логин и пароль", Toast.LENGTH_SHORT).show();
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(requireContext(), "Пожалуйста, введите номер аккаунта и код верификации", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // Show loading
             binding.progressBar.setVisibility(View.VISIBLE);
             binding.loginButton.setEnabled(false);
 
-            // Simulate network delay
-            view.postDelayed(() -> {
-                viewModel.login(username, password);
-                binding.progressBar.setVisibility(View.GONE);
-                binding.loginButton.setEnabled(true);
-            }, 1500);
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                if (user != null) {
+                                    viewModel.login(user.getEmail(), user.getUid());
+                                    Toast.makeText(requireContext(), "Логин успешен", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(requireContext(), "Неправильный номер аккаунта или код верификации", Toast.LENGTH_SHORT).show();
+                            }
+                            binding.progressBar.setVisibility(View.GONE);
+                            binding.loginButton.setEnabled(true);
+                        }
+                    });
         });
     }
 

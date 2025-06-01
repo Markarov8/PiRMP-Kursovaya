@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.FirebaseApp;
 import com.pandora.carcontrol.databinding.ActivityMainBinding;
 import com.pandora.carcontrol.fragments.ControlsFragment;
 import com.pandora.carcontrol.fragments.DashboardFragment;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        FirebaseApp.initializeApp(this);
 
         // Для контейнера фрагментов
         View fragmentContainer = findViewById(R.id.fragment_container);

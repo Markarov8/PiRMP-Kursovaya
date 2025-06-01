@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "461598746713",
+    "project_id": "pirmp-dace5",
+    "storage_bucket": "pirmp-dace5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:461598746713:android:4439f52e8abb35f5c8e948",
+        "android_client_info": {
+          "package_name": "com.pandora.carcontrol"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoM5_GLhSY4QUNkxnGi5RmqJ7TN7R4y40"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

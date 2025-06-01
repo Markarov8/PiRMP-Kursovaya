@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -46,6 +47,9 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:2.6.0")
     // Glide для загрузки изображений
     implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    // Firebase Authentication
+    implementation("com.google.firebase:firebase-auth:22.0.0")
 
     implementation(libs.appcompat)
     implementation(libs.material)
