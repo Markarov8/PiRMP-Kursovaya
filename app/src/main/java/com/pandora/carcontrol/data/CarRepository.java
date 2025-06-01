@@ -48,13 +48,13 @@ public class CarRepository {
 
     private final Random random = new Random();
 
-    // Periodic update handler
+    // Частота обновления данных
     private final Handler updateHandler = new Handler(Looper.getMainLooper());
     private final Runnable updateRunnable = new Runnable() {
         @Override
         public void run() {
             updateRandomValues();
-            updateHandler.postDelayed(this, 5000); // Update every 5 seconds
+            updateHandler.postDelayed(this, 1000); // Update every 5 seconds
         }
     };
 
@@ -66,19 +66,19 @@ public class CarRepository {
         commandDao = database.carCommandDao();
         historyDao = database.carHistoryDao();
 
-        // Initialize with default values
+        // Инициализация базовых значений
         initializeData();
 
-        // Start periodic updates
+        // Запуск периодического обновления данных
         startPeriodicUpdates();
     }
 
     private void initializeData() {
         executor.execute(() -> {
-            // Check if we have data in the database
+            // Проверка наличия ланных в ДБ
             CarStatus status = statusDao.getCarStatus();
             if (status == null) {
-                // Initialize with default values
+                // Инициализация базовых значений
                 status = getDefaultCarStatus();
                 statusDao.insert(status);
             }
@@ -119,17 +119,17 @@ public class CarRepository {
     private void updateRandomValues() {
         CarStatus currentStatus = carStatus.getValue();
         if (currentStatus != null && currentStatus.isHasConnection() && !isPendingCommand()) {
-            // Only update if we have connection and no pending commands
+            // Запуск рандомного изменения в случае наличия данных в БД
             CarStatus updatedStatus = new CarStatus(
                     currentStatus.isRunning(),
                     currentStatus.isLocked(),
                     currentStatus.isAlarm(),
-                    // Small random changes to make it look like real-time data
-                    Math.max(50, Math.min(110, currentStatus.getEngineTemp() + (random.nextFloat() - 0.5f))),
-                    Math.max(15, Math.min(30, currentStatus.getCabinTemp() + (random.nextFloat() - 0.5f) * 0.4f)),
-                    Math.max(0, Math.min(25, currentStatus.getOutsideTemp() + (random.nextFloat() - 0.5f) * 0.2f)),
+                    // Изменение значений в реальном времени
+                    Math.max(-20, Math.min(120, currentStatus.getEngineTemp() + (random.nextFloat() - 0.5f))),
+                    Math.max(-20, Math.min(50, currentStatus.getCabinTemp() + (random.nextFloat() - 0.5f) * 0.4f)),
+                    Math.max(-40, Math.min(50, currentStatus.getOutsideTemp() + (random.nextFloat() - 0.5f) * 0.2f)),
                     Math.max(0, Math.min(100, currentStatus.getFuelLevel() + (currentStatus.isRunning() ? (random.nextFloat() * -0.05f) : 0))),
-                    Math.max(0, Math.min(100, currentStatus.getBatteryLevel() + (currentStatus.isRunning() ? (random.nextFloat() * 0.1f) : (random.nextFloat() - 0.5f) * 0.2f))),
+                    Math.max(0, Math.min(20, currentStatus.getBatteryLevel() + (currentStatus.isRunning() ? (random.nextFloat() * 0.1f) : (random.nextFloat() - 0.5f) * 0.2f))),
                     currentStatus.getLocation(),
                     new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US).format(new Date()),
                     currentStatus.isHasConnection()
@@ -207,8 +207,8 @@ public class CarRepository {
             List<CarCommand> finalCurrentCommands = currentCommands;
             handler.post(() -> commands.setValue(finalCurrentCommands));
 
-            // Process command after delay (simulate network request)
-            handler.postDelayed(() -> processCommand(command), 2000);
+            // Задержка изменений данных (симуляция работы через сеть)
+            handler.postDelayed(() -> processCommand(command), 800);
         });
     }
 
@@ -217,7 +217,7 @@ public class CarRepository {
             CarStatus currentStatus = carStatus.getValue();
             if (currentStatus == null) return;
 
-            // Check if we have connection
+            // Проверка наличия связи
             if (!currentStatus.isHasConnection()) {
                 // Update command status to failed
                 command.setStatus("FAILED");
@@ -378,7 +378,7 @@ public class CarRepository {
                             null
                     );
 
-                    // Auto-reset alarm after 5 seconds
+                    //Автосброс через 15 секунд
                     handler.postDelayed(() -> {
                         CarStatus alarmStatus = carStatus.getValue();
                         if (alarmStatus != null && alarmStatus.isAlarm()) {
@@ -397,7 +397,7 @@ public class CarRepository {
                             );
                             updateCarStatus(resetStatus);
                         }
-                    }, 5000);
+                    }, 15000);
                     break;
 
                 case "LOCATE":
@@ -516,12 +516,12 @@ public class CarRepository {
                 false, // isRunning
                 true, // isLocked
                 false, // alarm
-                66.0f, // engineTemp
-                28.0f, // cabinTemp
-                9.0f, // outsideTemp
-                18.0f, // fuelLevel
-                14.1f, // batteryLevel
-                new Location(null, null, "123 Main St, San Francisco, CA"), // location
+                16.0f, // engineTemp
+                19.0f, // cabinTemp
+                21.0f, // outsideTemp
+                35.0f, // fuelLevel
+                11.9f, // batteryLevel
+                new Location(null, null, "Россия, г.Москва, Дубнинская ул., 40"), // location
                 new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US).format(new Date()), // lastUpdate
                 true // hasConnection
         );
@@ -539,20 +539,20 @@ public class CarRepository {
                 true, // autoHeat
                 true, // autoCool
                 22.0f, // targetTemp
-                41.27f, // simBalance
-                "+79163435790" // simNumber
+                260.0f, // simBalance
+                "+79163873565" // simNumber
         );
     }
 
     private CarProfile getDefaultCarProfile() {
         return new CarProfile(
-                "Рыжик", // carName
-                "Артём", // userName
-                "Маркаров", // userLastName
-                "108795334", // accountNumber
-                "DHNR90P", // deviceCode
-                "1.142", // verificationCode
-                "1.29.3" // appVersion
+                "Your car", // Имя авто
+                "", // Имя
+                "", // Фамилия
+                "108795334", // Номер аккаунта
+                "DHNR90P", // Номер устройства
+                "15142", // Код авторизации
+                "1.1.1" // Версия приложения
         );
     }
 }

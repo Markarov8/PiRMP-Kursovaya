@@ -26,7 +26,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int TYPE_ITEM = 1;
 
     private final List<Object> items = new ArrayList<>();
-    private final SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
 
     public void submitList(Map<String, List<CarHistory>> groupedHistory) {
@@ -78,10 +77,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ItemViewHolder itemHolder = (ItemViewHolder) holder;
             CarHistory history = (CarHistory) items.get(position);
 
-            // Set time
+            // Создание времени события
             itemHolder.timeText.setText(DateFormatter.formatTime(history.getTimestamp()));
 
-            // Set icon and details based on history type
+            // Создание события в списке истории действий
             switch (history.getType()) {
                 case "ENGINE_START":
                     itemHolder.iconView.setImageResource(R.drawable.ic_power);

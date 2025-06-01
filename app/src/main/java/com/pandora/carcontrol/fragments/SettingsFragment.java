@@ -37,13 +37,13 @@ public class SettingsFragment extends Fragment {
     }
 
     private void setupClickListeners() {
-        // Edit profile button
+        // Редактирование профиля
         binding.editButton.setOnClickListener(v -> {
             EditProfileDialogFragment dialog = new EditProfileDialogFragment();
             dialog.show(getChildFragmentManager(), "edit_profile_dialog");
         });
 
-        // Phone container
+        // Переход в Телефон и вставка номера
         binding.phoneContainer.setOnClickListener(v -> {
             String phoneNumber = binding.phoneText.getText().toString().split(" • ")[0].replace("SIM ", "");
             Intent intent = new Intent(Intent.ACTION_DIAL);
@@ -51,7 +51,7 @@ public class SettingsFragment extends Fragment {
             startActivity(intent);
         });
 
-        // Logout button
+        // Кнопка Выхода из профиля
         binding.logoutButton.setOnClickListener(v -> {
             viewModel.logout();
         });

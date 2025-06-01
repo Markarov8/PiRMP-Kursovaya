@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "car_settings")
 public class CarSettings {
     @PrimaryKey
-    private int id = 1; // Single instance
+    private int id = 1;
 
     private boolean autoStartEnabled;
     private float autoStartTemperature;
