@@ -35,11 +35,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Profile Section -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/background_card"
             android:orientation="horizontal"
             android:padding="16dp">
 
@@ -47,24 +46,33 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/bg_profile_image"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/bg_profile_image"
-                    android:src="@drawable/ic_user" />
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/bg_profile_image"
+                        android:src="@drawable/ic_user" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:gravity="center_horizontal">
 
                         <TextView
                             android:id="@+id/profile_last_name"
@@ -72,7 +80,7 @@
                             android:layout_height="wrap_content"
                             android:paddingEnd="8sp"
                             android:textColor="@color/text"
-                            android:textSize="16sp"
+                            android:textSize="20sp"
                             tools:text="Маркаров" />
 
                         <TextView
@@ -80,91 +88,123 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/text"
-                            android:textSize="16sp"
+                            android:textSize="20sp"
                             tools:text="Артём" />
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/profile_id"
-                        android:layout_width="wrap_content"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="6dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/text"
-                        android:textSize="14sp"
-                        tools:text="DXNR90P" />
+                        android:orientation="horizontal"
+                        android:gravity="center_horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text"
+                            android:textSize="16sp"
+                            android:paddingEnd="8sp"
+                            tools:text="Номер аккаунта (логин):" />
+
+                        <TextView
+                            android:id="@+id/profile_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text"
+                            android:textSize="16sp"
+                            tools:text="DXNR90P" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text"
+                            android:textSize="16sp"
+                            android:paddingEnd="8sp"
+                            tools:text="Пароль:" />
+
+                        <TextView
+                            android:id="@+id/profile_version"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text"
+                            android:textSize="16sp"
+                            tools:text="TPRS6!6" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="14sp"
+                            android:paddingEnd="8sp"
+                            tools:text="Версия приложения:" />
+
+                        <TextView
+                            android:id="@+id/profile_app_version"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp"
+                            tools:text="1.1.7" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="16dp" />
 
                     <TextView
-                        android:id="@+id/profile_version"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/edit_button"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/text_secondary"
+                        android:gravity="center"
+                        android:layout_gravity="center_vertical"
+                        android:text="Редактировать"
                         android:textSize="14sp"
-                        tools:text="TPRS6!6" />
-
-                    <TextView
-                        android:id="@+id/profile_app_version"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="12sp"
-                        tools:text="App Ver. 1.1.7" />
+                        android:textColor="@color/primary"
+                        android:textStyle="bold"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp" />
                 </LinearLayout>
             </LinearLayout>
-
-            <ImageView
-                android:id="@+id/edit_button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_edit"
-                app:tint="@color/primary" />
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/border" />
-
-        <!-- Phone Section -->
         <LinearLayout
-            android:id="@+id/phone_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/background_card"
             android:orientation="horizontal"
             android:padding="16dp">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_phone"
-                app:tint="@color/primary" />
-
-            <TextView
-                android:id="@+id/phone_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text"
-                android:textSize="16sp"
-                tools:text="SIM +79163555790 • 41.27₽" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/border" />
-
-        <!-- Settings Options -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
             <LinearLayout
+                android:id="@+id/phone_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/background_card"
+                android:background="@drawable/bg_profile_image"
                 android:orientation="horizontal"
                 android:padding="16dp">
 
@@ -173,103 +213,20 @@
                     android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="16dp"
-                    android:src="@drawable/ic_settings"
+                    android:src="@drawable/ic_phone"
                     app:tint="@color/primary" />
 
                 <TextView
+                    android:id="@+id/phone_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Настройки устройства"
                     android:textColor="@color/text"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/border" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/background_card"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/ic_sliders"
-                    app:tint="@color/primary" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Кнопки управления"
-                    android:textColor="@color/text"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/border" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/background_card"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/ic_help_circle"
-                    app:tint="@color/primary" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Помощь"
-                    android:textColor="@color/text"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/border" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/background_card"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/ic_message_square"
-                    app:tint="@color/primary" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Чат техподдержки"
-                    android:textColor="@color/text"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:text="SIM +79163555790 • 41.27₽" />
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+        </LinearLayout>
+        <!-- Phone Section -->
 
 </androidx.core.widget.NestedScrollView>
 
