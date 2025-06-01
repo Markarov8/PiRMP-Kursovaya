@@ -50,20 +50,20 @@ public class DashboardFragment extends Fragment {
     }
 
     private void setupObservers() {
-// Observe car status
+        // Observe car status
         viewModel.getCarStatus().observe(getViewLifecycleOwner(), this::updateUI);
 
-// Observe car settings
+        // Observe car settings
         viewModel.getCarSettings().observe(getViewLifecycleOwner(), settings -> {
             binding.infoBar.simBalance.setText(String.format("%.2f₽", settings.getSimBalance()));
         });
 
-// Observe car profile
+        // Observe car profile
         viewModel.getCarProfile().observe(getViewLifecycleOwner(), profile -> {
             binding.header.carName.setText(profile.getCarName());
         });
 
-// Observe dev mode
+        // Observe dev mode
         viewModel.getIsDevMode().observe(getViewLifecycleOwner(), isDevMode -> {
             binding.devModeButton.setVisibility(isDevMode ? View.VISIBLE : View.GONE);
         });
@@ -86,8 +86,15 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        // Phone button
+        // Phone down button
         binding.phoneButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:" + SUPPORT_PHONE));
+            startActivity(intent);
+        });
+
+        // Phone button
+        binding.infoBar.phoneCallButton.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_DIAL);
             intent.setData(Uri.parse("tel:" + SUPPORT_PHONE));
             startActivity(intent);

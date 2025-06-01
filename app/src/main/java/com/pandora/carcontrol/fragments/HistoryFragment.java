@@ -1,6 +1,8 @@
 package com.pandora.carcontrol.fragments;
 
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.pandora.carcontrol.adapters.HistoryAdapter;
 import com.pandora.carcontrol.data.models.CarHistory;
+import com.pandora.carcontrol.data.models.CarStatus;
 import com.pandora.carcontrol.databinding.FragmentHistoryBinding;
+import com.pandora.carcontrol.utils.DateFormatter;
 import com.pandora.carcontrol.viewmodels.MainViewModel;
 
 import java.text.ParseException;
@@ -31,6 +35,7 @@ public class HistoryFragment extends Fragment {
     private FragmentHistoryBinding binding;
     private MainViewModel viewModel;
     private HistoryAdapter adapter;
+    private final String SUPPORT_PHONE = "1111";
 
     @Nullable
     @Override
@@ -65,9 +70,36 @@ public class HistoryFragment extends Fragment {
                     .setNegativeButton("Отмена", null)
                     .show();
         });
+
+        // Phone button
+        binding.infoBar.phoneCallButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:" + SUPPORT_PHONE));
+            startActivity(intent);
+        });
+
+        // Message button
+        binding.infoBar.messageButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("smsto:" + SUPPORT_PHONE));
+            startActivity(intent);
+        });
     }
 
     private void observeHistory() {
+        // Observe car status
+        viewModel.getCarStatus().observe(getViewLifecycleOwner(), this::updateUI);
+
+        // Observe car settings
+        viewModel.getCarSettings().observe(getViewLifecycleOwner(), settings -> {
+            binding.infoBar.simBalance.setText(String.format("%.2f₽", settings.getSimBalance()));
+        });
+
+        // Observe car profile
+        viewModel.getCarProfile().observe(getViewLifecycleOwner(), profile -> {
+            binding.header.carName.setText(profile.getCarName());
+        });
+
         viewModel.getHistory().observe(getViewLifecycleOwner(), historyList -> {
             if (historyList == null || historyList.isEmpty()) {
                 binding.emptyView.setVisibility(View.VISIBLE);
@@ -109,6 +141,14 @@ public class HistoryFragment extends Fragment {
         }
 
         return groupedHistory;
+    }
+
+    private void updateUI(CarStatus status) {
+        if (status == null) return;
+
+        // Update header
+        String securityStatus = status.isLocked() ? "Под охраной" : "Без охраны";
+        binding.header.carStatus.setText(DateFormatter.formatDateTime(status.getLastUpdate()) + " • " + securityStatus);
     }
 
     @Override

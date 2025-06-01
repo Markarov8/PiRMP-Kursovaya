@@ -1,5 +1,7 @@
 package com.pandora.carcontrol.fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,7 @@ public class ControlsFragment extends Fragment {
 
     private FragmentControlsBinding binding;
     private MainViewModel viewModel;
+    private final String SUPPORT_PHONE = "1111";
 
     @Nullable
     @Override
@@ -64,9 +67,36 @@ public class ControlsFragment extends Fragment {
         binding.locateButton.setOnClickListener(v -> {
             viewModel.sendCommand("LOCATE");
         });
+
+        // Phone button
+        binding.infoBar.phoneCallButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:" + SUPPORT_PHONE));
+            startActivity(intent);
+        });
+
+        // Message button
+        binding.infoBar.messageButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("smsto:" + SUPPORT_PHONE));
+            startActivity(intent);
+        });
     }
 
     private void observeCarStatus() {
+        // Observe car status
+        viewModel.getCarStatus().observe(getViewLifecycleOwner(), this::updateUI);
+
+        // Observe car settings
+        viewModel.getCarSettings().observe(getViewLifecycleOwner(), settings -> {
+            binding.infoBar.simBalance.setText(String.format("%.2f₽", settings.getSimBalance()));
+        });
+
+        // Observe car profile
+        viewModel.getCarProfile().observe(getViewLifecycleOwner(), profile -> {
+            binding.header.carName.setText(profile.getCarName());
+        });
+
         viewModel.getCarStatus().observe(getViewLifecycleOwner(), status -> {
             if (status == null) return;
 
@@ -109,7 +139,15 @@ public class ControlsFragment extends Fragment {
 
     }
 
-    @Override
+    private void updateUI(CarStatus status) {
+        if (status == null) return;
+
+        // Update header
+        String securityStatus = status.isLocked() ? "Под охраной" : "Без охраны";
+        binding.header.carStatus.setText(DateFormatter.formatDateTime(status.getLastUpdate()) + " • " + securityStatus);
+    }
+
+        @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
