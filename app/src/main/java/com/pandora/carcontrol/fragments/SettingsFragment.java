@@ -62,7 +62,7 @@ public class SettingsFragment extends Fragment {
         viewModel.getCarProfile().observe(getViewLifecycleOwner(), profile -> {
             binding.profileId.setText(profile.getAccountNumber());
             binding.profileVersion.setText(profile.getVerificationCode());
-            binding.profileAppVersion.setText("App Ver. " + profile.getAppVersion());
+            binding.profileAppVersion.setText(profile.getAppVersion());
 
             binding.profileLastName.setText(profile.getUserLastName());
             binding.profileName.setText(profile.getUserName());
