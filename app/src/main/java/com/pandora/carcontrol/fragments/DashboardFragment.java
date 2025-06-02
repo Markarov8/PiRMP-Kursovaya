@@ -11,13 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.pandora.carcontrol.R;
 import com.pandora.carcontrol.data.models.CarStatus;
 import com.pandora.carcontrol.databinding.FragmentDashboardBinding;
@@ -25,7 +23,6 @@ import com.pandora.carcontrol.utils.DateFormatter;
 import com.pandora.carcontrol.viewmodels.MainViewModel;
 
 public class DashboardFragment extends Fragment {
-
     private FragmentDashboardBinding binding;
     private MainViewModel viewModel;
     private int tapCount = 0;
@@ -42,72 +39,62 @@ public class DashboardFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-
         setupObservers();
         setupClickListeners();
     }
 
     private void setupObservers() {
-        // Observe car status
+        // Наблюдение за статусом автомобиля
         viewModel.getCarStatus().observe(getViewLifecycleOwner(), this::updateUI);
-
-        // Observe car settings
+        // Наблюдение за настройками автомобиля
         viewModel.getCarSettings().observe(getViewLifecycleOwner(), settings -> {
             binding.infoBar.simBalance.setText(String.format("%.2f₽", settings.getSimBalance()));
         });
-
-        // Observe car profile
+        // Наблюдение за профилем автомобиля
         viewModel.getCarProfile().observe(getViewLifecycleOwner(), profile -> {
             binding.header.carName.setText(profile.getCarName());
         });
-
-        // Observe dev mode
+        // Наблюдение за режимом разработчика
         viewModel.getIsDevMode().observe(getViewLifecycleOwner(), isDevMode -> {
             binding.devModeButton.setVisibility(isDevMode ? View.VISIBLE : View.GONE);
         });
     }
 
     private void setupClickListeners() {
-        // Lock/Unlock button
+        // Кнопка блокировки/разблокировки автомобиля
         binding.unlockButton.setOnClickListener(v -> {
             CarStatus status = viewModel.getCarStatus().getValue();
             if (status != null) {
                 viewModel.sendCommand(status.isLocked() ? "UNLOCK" : "LOCK");
             }
         });
-
-        // Engine start/stop button
+        // Кнопка запуска/остановки двигателя
         binding.engineButton.setOnClickListener(v -> {
             CarStatus status = viewModel.getCarStatus().getValue();
             if (status != null) {
                 viewModel.sendCommand(status.isRunning() ? "STOP_ENGINE" : "START_ENGINE");
             }
         });
-
-        // Phone down button
+        // Кнопка вызова телефона
         binding.phoneButton.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_DIAL);
             intent.setData(Uri.parse("tel:" + SUPPORT_PHONE));
             startActivity(intent);
         });
-
-        // Phone button
+        // Кнопка вызова телефона в информационной панели
         binding.infoBar.phoneCallButton.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_DIAL);
             intent.setData(Uri.parse("tel:" + SUPPORT_PHONE));
             startActivity(intent);
         });
-
-        // Message button
+        // Кнопка отправки сообщения
         binding.infoBar.messageButton.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_SENDTO);
             intent.setData(Uri.parse("smsto:" + SUPPORT_PHONE));
             startActivity(intent);
         });
-
-        // Car image - secret dev mode activation
+        // Кнопка автомобиля - секретная активация режима разработчика
         binding.carImage.setOnClickListener(v -> {
             tapCount++;
             if (tapCount >= 5) {
@@ -115,13 +102,11 @@ public class DashboardFragment extends Fragment {
                 tapCount = 0;
                 Toast.makeText(requireContext(), "Режим разработчика активирован", Toast.LENGTH_SHORT).show();
             }
-
-            // Reset tap count after 2 seconds
+            // Сброс счётчика нажатий через 2 секунды
             tapResetHandler.removeCallbacksAndMessages(null);
             tapResetHandler.postDelayed(() -> tapCount = 0, 2000);
         });
-
-        // Dev mode button
+        // Кнопка режима разработчика
         binding.devModeButton.setOnClickListener(v -> {
             DevModeDialogFragment dialog = new DevModeDialogFragment();
             dialog.show(getChildFragmentManager(), "dev_mode_dialog");
@@ -131,32 +116,76 @@ public class DashboardFragment extends Fragment {
     private void updateUI(CarStatus status) {
         if (status == null) return;
 
-        // Update header
+        // Обновление заголовка
         String securityStatus = status.isLocked() ? "Под охраной" : "Без охраны";
         binding.header.carStatus.setText(DateFormatter.formatDateTime(status.getLastUpdate()) + " • " + securityStatus);
 
-        // Update quick controls
+        // Обновление быстрых управляющих элементов
         binding.lockIcon.setSelected(status.isLocked());
         binding.engineIcon.setSelected(status.isRunning());
 
-        // Update status indicators
+        // Обновление индикаторов состояния
         binding.batteryValue.setText(String.format("%.1fV", status.getBatteryLevel()));
         binding.fuelValue.setText(String.format("%.0fл", status.getFuelLevel()));
         binding.engineTempValue.setText(String.format("%.0f°", status.getEngineTemp()));
         binding.cabinTempValue.setText(String.format("%.0f°", status.getCabinTemp()));
         binding.outsideTempValue.setText(String.format("%.0f°", status.getOutsideTemp()));
 
-        // Update GPS status
+        // Обновление статуса GPS
         if (!status.isHasConnection()) {
             binding.noDataText.setVisibility(View.VISIBLE);
             binding.gpsText.setVisibility(View.GONE);
+            binding.warningMessage.setVisibility(View.GONE);
 
             ImageView signalIcon = binding.header.signalIcon;
-            signalIcon.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.danger)));;
+            signalIcon.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.danger)));
         } else {
             ImageView signalIcon = binding.header.signalIcon;
             signalIcon.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.text)));
             binding.noDataText.setVisibility(View.GONE);
+
+            // Проверка всех условий для предупреждений
+            StringBuilder warningMessage = new StringBuilder();
+
+            // Проверка низкого уровня топлива
+            if (status.getFuelLevel() < 12) {
+                warningMessage.append("Низкий уровень топлива!\n\n");
+                ImageView ic_droplet = binding.icDroplet;
+                ic_droplet.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.danger)));
+            } else {
+                ImageView ic_droplet = binding.icDroplet;
+                ic_droplet.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.primary)));
+            }
+
+            // Проверка низкого вольтажа батареи
+            if (status.getBatteryLevel() < 11.5) {
+                warningMessage.append("Низкий вольтаж батареи!\nРекомендуется использовать пусковое устройство.\n\n");
+                ImageView icBattery = binding.icBattery;
+                icBattery.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.danger)));
+            }
+            // Проверка высокого вольтажа батареи
+            else if (status.getBatteryLevel() > 15) {
+                warningMessage.append("Высокий вольтаж батареи!\nРекомендуется обратиться в сервисный центр.\n\n");
+                ImageView icBattery = binding.icBattery;
+                icBattery.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.danger)));
+            }
+            else {
+                ImageView icBattery = binding.icBattery;
+                icBattery.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.primary)));
+            }
+
+            // Проверка низкой температуры на улице
+            if (status.getOutsideTemp() < 4) {
+                warningMessage.append("Возможен гололёд!\nБудьте осторожны.");
+            }
+
+            // Установка сообщения или скрытие
+            if (warningMessage.length() > 0) {
+                binding.warningMessage.setText(warningMessage.toString().trim());
+                binding.warningMessage.setVisibility(View.VISIBLE);
+            } else {
+                binding.warningMessage.setVisibility(View.GONE);
+            }
 
             if (status.getLocation().getLatitude() == null) {
                 binding.gpsText.setVisibility(View.VISIBLE);
@@ -165,7 +194,7 @@ public class DashboardFragment extends Fragment {
             }
         }
 
-        // Update bottom controls
+        // Обновление нижних управляющих элементов
         binding.unlockIcon.setImageResource(status.isLocked() ? R.drawable.ic_lock_open : R.drawable.ic_lock);
     }
 
