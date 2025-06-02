@@ -121,7 +121,7 @@ public class CarRepository {
                     Math.max(-20, Math.min(50, currentStatus.getCabinTemp() + (random.nextFloat() - 0.5f) * 0.4f)),
                     Math.max(-40, Math.min(50, currentStatus.getOutsideTemp() + (random.nextFloat() - 0.5f) * 0.2f)),
                     Math.max(0, Math.min(100, currentStatus.getFuelLevel() + (currentStatus.isRunning() ? (random.nextFloat() * -0.05f) : 0))),
-                    Math.max(0, Math.min(20, currentStatus.getBatteryLevel() + (currentStatus.isRunning() ? (random.nextFloat() * 0.1f) : (random.nextFloat() - 0.5f) * 0.2f))),
+                    Math.max(0, Math.min(20, currentStatus.getBatteryLevel() + (currentStatus.isRunning() ? (random.nextFloat() * -0.1f) : (random.nextFloat() - 0.5f) * 0.2f))),
                     currentStatus.getLocation(),
                     new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US).format(new Date()),
                     currentStatus.isHasConnection()
@@ -499,7 +499,7 @@ public class CarRepository {
                 false, // isRunning
                 true, // isLocked
                 false, // alarm
-                16.0f, // engineTemp
+                19.0f, // engineTemp
                 19.0f, // cabinTemp
                 21.0f, // outsideTemp
                 35.0f, // fuelLevel
