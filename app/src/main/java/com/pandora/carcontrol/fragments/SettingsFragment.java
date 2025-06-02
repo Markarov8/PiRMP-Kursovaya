@@ -97,6 +97,8 @@ public class SettingsFragment extends Fragment {
             binding.profileLastName.setText(profile.getUserLastName());
             binding.profileName.setText(profile.getUserName());
         });
+
+        // Observe settings
         viewModel.getCarSettings().observe(getViewLifecycleOwner(), settings -> {
             binding.phoneText.setText(String.format("SIM %s • %.2f₽", settings.getSimNumber(), settings.getSimBalance()));
         });

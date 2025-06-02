@@ -8,11 +8,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.pandora.carcontrol.data.CarRepository;
 import com.pandora.carcontrol.data.models.CarCommand;
 import com.pandora.carcontrol.data.models.CarHistory;
@@ -31,47 +26,32 @@ public class MainViewModel extends AndroidViewModel {
     private final MutableLiveData<Boolean> isDevMode = new MutableLiveData<>(false);
     private final MutableLiveData<String> accountNumber = new MutableLiveData<>();
     private final MutableLiveData<String> verificationCode = new MutableLiveData<>();
-    private final FirebaseAuth mAuth;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
         repository = new CarRepository(application);
         preferenceManager = new PreferenceManager(application);
-        mAuth = FirebaseAuth.getInstance();
 
         // Initialize authentication state from preferences
         isAuthenticated.setValue(preferenceManager.isLoggedIn());
-
-        // Проверка состояния аутентификации при запуске приложения
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            preferenceManager.setLoggedIn(true);
-            isAuthenticated.setValue(true);
-        }
     }
 
+    // Authentication
     public LiveData<Boolean> getIsAuthenticated() {
         return isAuthenticated;
     }
 
-    public void login(String email, String password) {
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener((Task<AuthResult> task) -> {
-                    if (task.isSuccessful()) {
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        if (user != null) {
-                            preferenceManager.setLoggedIn(true);
-                            isAuthenticated.setValue(true);
-                            Toast.makeText(getApplication(), "Логин успешен", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(getApplication(), "Неправильный номер аккаунта или код верификации", Toast.LENGTH_SHORT).show();
-                    }
-                });
+    public void login(String username, String password) {
+        // In a real app, you would validate credentials against a server
+        // For this example, we'll accept any non-empty credentials
+        if (username != null && !username.isEmpty() && password != null && !password.isEmpty()) {
+            preferenceManager.setLoggedIn(true);
+            isAuthenticated.setValue(true);
+            Toast.makeText(getApplication(), "Логин успешен", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void logout() {
-        mAuth.signOut();
         preferenceManager.setLoggedIn(false);
         isAuthenticated.setValue(false);
     }
@@ -152,9 +132,5 @@ public class MainViewModel extends AndroidViewModel {
     // Метод для получения кода верификации
     public LiveData<String> getVerificationCode() {
         return verificationCode;
-    }
-    // Метод для получения текущего пользователя
-    public FirebaseUser getCurrentUser() {
-        return mAuth.getCurrentUser();
     }
 }

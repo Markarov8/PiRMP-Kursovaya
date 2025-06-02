@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.android.application)
-    id("com.google.gms.google-services")
 }
 
 android {
@@ -48,14 +47,10 @@ dependencies {
     // Glide для загрузки изображений
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
-    // Firebase Authentication
-    implementation("com.google.firebase:firebase-auth:22.0.0")
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
 }
