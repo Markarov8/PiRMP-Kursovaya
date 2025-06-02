@@ -10,9 +10,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.pandora.carcontrol" />
-                  <option name="mobileSdkAppId" value="1:461598746713:android:4439f52e8abb35f5c8e948" />
-                  <option name="projectId" value="pirmp-dace5" />
-                  <option name="projectNumber" value="461598746713" />
+                  <option name="mobileSdkAppId" value="1:750135194803:android:9d4fb15e7218567ff92cc6" />
+                  <option name="projectId" value="kurs-160e7" />
+                  <option name="projectNumber" value="750135194803" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

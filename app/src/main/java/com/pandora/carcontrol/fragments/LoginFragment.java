@@ -11,6 +11,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.pandora.carcontrol.databinding.FragmentLoginBinding;
 import com.pandora.carcontrol.viewmodels.MainViewModel;
 
@@ -18,6 +22,7 @@ public class LoginFragment extends Fragment {
 
     private FragmentLoginBinding binding;
     private MainViewModel viewModel;
+    private FirebaseAuth mAuth;
 
     @Nullable
     @Override
@@ -32,33 +37,38 @@ public class LoginFragment extends Fragment {
 
         viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
+        mAuth = FirebaseAuth.getInstance();
+
         binding.loginButton.setOnClickListener(v -> {
+            //Данные вводимые пользователем при авторизации
             String username = binding.usernameInput.getText().toString().trim();
             String password = binding.passwordInput.getText().toString().trim();
+            if (!username.isEmpty() && !password.isEmpty()) {
 
-            if (username.isEmpty() || password.isEmpty()) {
-                Toast.makeText(requireContext(), "Пожалуйста, введите логин и пароль", Toast.LENGTH_SHORT).show();
-                return;
+                mAuth.signInWithEmailAndPassword(username, password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>(){
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    viewModel.preferenceManager.setLoggedIn(true);
+                                    viewModel.isAuthenticated.setValue(true);
+                                    Toast.makeText(requireContext(),"Логин успешен", Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    Toast.makeText(requireContext(), "Неверный логин или пароль", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
             }
-
-            // Show loading
-            binding.progressBar.setVisibility(View.VISIBLE);
-            binding.loginButton.setEnabled(false);
-
-            // Simulate network delay
-            view.postDelayed(() -> {
-                viewModel.login(username, password);
-                binding.progressBar.setVisibility(View.GONE);
-                binding.loginButton.setEnabled(true);
-            }, 1500);
+            else {
+                Toast.makeText(requireContext(), "Пожалуйста, введите логин и пароль", Toast.LENGTH_LONG).show();
+            }
         });
 
         binding.forgotPassword.setOnClickListener(v -> {
-            // Получите логин и пароль из ViewModel
-            String login = viewModel.getAccountNumber().getValue();
-            String password = viewModel.getVerificationCode().getValue();
             // Покажите уведомление
-            Toast.makeText(requireContext(), "Логин, Пароль: " + login + ", " + password, Toast.LENGTH_LONG).show();
+            Toast.makeText(requireContext(), "Логин, Пароль: " + "1234@mail.ru"
+                    + ", " + "111111", Toast.LENGTH_LONG).show();
         });
 
     }

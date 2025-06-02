@@ -527,14 +527,14 @@ public class CarRepository {
         );
     }
 
-    private CarProfile getDefaultCarProfile() {
+    public CarProfile getDefaultCarProfile() {
         return new CarProfile(
                 "Ласточка", // Имя авто
                 "Иван", // Имя
                 "Иванов", // Фамилия
                 "1234@mail.ru", // Почта аккаунта
                 "DHNR90P", // Номер устройства
-                "1111", // Код авторизации
+                "111111", // Код авторизации
                 "1.1.1" // Версия приложения
         );
     }

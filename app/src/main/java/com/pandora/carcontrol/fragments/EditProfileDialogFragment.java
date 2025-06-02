@@ -81,7 +81,7 @@ public class EditProfileDialogFragment extends DialogFragment {
                     carName,
                     userName,
                     userLastName,
-                    "108795334",
+                    "1234@mail.ru",
                     "DHNR90P",
                     verificationCode,
                     currentProfile.getAppVersion()

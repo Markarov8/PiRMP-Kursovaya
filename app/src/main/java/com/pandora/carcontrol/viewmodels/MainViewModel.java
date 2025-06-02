@@ -1,7 +1,6 @@
 package com.pandora.carcontrol.viewmodels;
 
 import android.app.Application;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -21,8 +20,8 @@ import java.util.List;
 public class MainViewModel extends AndroidViewModel {
 
     private final CarRepository repository;
-    private final PreferenceManager preferenceManager;
-    private final MutableLiveData<Boolean> isAuthenticated = new MutableLiveData<>(false);
+    public final PreferenceManager preferenceManager;
+    public final MutableLiveData<Boolean> isAuthenticated = new MutableLiveData<>(false);
     private final MutableLiveData<Boolean> isDevMode = new MutableLiveData<>(false);
     private final MutableLiveData<String> accountNumber = new MutableLiveData<>();
     private final MutableLiveData<String> verificationCode = new MutableLiveData<>();
@@ -41,15 +40,6 @@ public class MainViewModel extends AndroidViewModel {
         return isAuthenticated;
     }
 
-    public void login(String username, String password) {
-        // In a real app, you would validate credentials against a server
-        // For this example, we'll accept any non-empty credentials
-        if (username != null && !username.isEmpty() && password != null && !password.isEmpty()) {
-            preferenceManager.setLoggedIn(true);
-            isAuthenticated.setValue(true);
-            Toast.makeText(getApplication(), "Логин успешен", Toast.LENGTH_SHORT).show();
-        }
-    }
 
     public void logout() {
         preferenceManager.setLoggedIn(false);
