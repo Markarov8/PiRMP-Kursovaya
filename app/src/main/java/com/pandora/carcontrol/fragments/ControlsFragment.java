@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +23,7 @@ public class ControlsFragment extends Fragment {
 
     private FragmentControlsBinding binding;
     private MainViewModel viewModel;
+    private CarStatus carStatus;
     private final String SUPPORT_PHONE = "1111";
 
     @Nullable
@@ -66,6 +68,7 @@ public class ControlsFragment extends Fragment {
         // Locate button
         binding.locateButton.setOnClickListener(v -> {
             viewModel.sendCommand("LOCATE");
+            Toast.makeText(requireContext(), "37.7749, -122.4194" , Toast.LENGTH_LONG).show();
         });
 
         // Phone button
