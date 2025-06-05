@@ -66,7 +66,7 @@ public class LoginFragment extends Fragment {
         });
 
         binding.forgotPassword.setOnClickListener(v -> {
-            // Покажите уведомление
+            // Показ уведомления
             Toast.makeText(requireContext(), "Логин, Пароль: " + "1234@mail.ru"
                     + ", " + "111111", Toast.LENGTH_LONG).show();
         });
